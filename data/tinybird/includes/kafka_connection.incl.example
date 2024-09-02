@@ -1,0 +1,4 @@
+KAFKA_CONNECTION_NAME kafka_connection
+KAFKA_BOOTSTRAP_SERVERS servers
+KAFKA_KEY username
+KAFKA_SECRET pass

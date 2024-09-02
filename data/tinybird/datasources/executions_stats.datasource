@@ -1,0 +1,33 @@
+# DATASOURCE executions_stats
+# ENGINE "SummingMergeTree"
+# ENGINE_PARTITION_KEY "toYYYYMM(date)"
+# ENGINE_SORTING_KEY "date, workflow_id"
+
+# SCHEMA >
+#     `date` Date,
+#     `workflow_id` String,
+#     `total_executions` UInt32,
+#     `successful_executions` UInt32,
+#     `failed_executions` UInt32,
+#     `pending_executions` UInt32,
+#     `processing_executions` UInt32,
+#     `avg_duration_seconds` Float64,
+#     `min_duration_seconds` Int32,
+#     `max_duration_seconds` Int32
+
+DATASOURCE executions_stats
+ENGINE "SummingMergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(date)"
+ENGINE_SORTING_KEY "date, workflow_id"
+
+SCHEMA >
+    `date` Date `json:$.date`,
+    `workflow_id` String `json:$.workflow_id`,
+    `total_executions` UInt32 `json:$.total_executions`,
+    `successful_executions` UInt32 `json:$.successful_executions`,
+    `failed_executions` UInt32 `json:$.failed_executions`,
+    `pending_executions` UInt32 `json:$.pending_executions`,
+    `processing_executions` UInt32 `json:$.processing_executions`,
+    `avg_duration_seconds` Float64 `json:$.avg_duration_seconds`,
+    `min_duration_seconds` Int32 `json:$.min_duration_seconds`,
+    `max_duration_seconds` Int32 `json:$.max_duration_seconds`

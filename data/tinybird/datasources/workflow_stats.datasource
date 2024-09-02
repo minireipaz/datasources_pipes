@@ -1,0 +1,26 @@
+# DATASOURCE workflow_stats
+# ENGINE "SummingMergeTree"
+# ENGINE_PARTITION_KEY "toYYYYMM(date)"
+# ENGINE_SORTING_KEY "date"
+
+# SCHEMA >
+#     `date` Date,
+#     `total_workflows` UInt32,
+#     `successful_workflows` UInt32,
+#     `failed_workflows` UInt32,
+#     `pending_workflows` UInt32,
+#     `avg_duration_seconds` Float64
+
+DATASOURCE workflow_stats
+ENGINE "SummingMergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(date)"
+ENGINE_SORTING_KEY "date"
+
+SCHEMA >
+    `date` Date `json:$.date`,
+    `total_workflows` UInt32 `json:$.total_workflows`,
+    `successful_workflows` UInt32 `json:$.successful_workflows`,
+    `failed_workflows` UInt32 `json:$.failed_workflows`,
+    `pending_workflows` UInt32 `json:$.pending_workflows`,
+    `avg_duration_seconds` Float64 `json:$.avg_duration_seconds`
+

@@ -1,0 +1,21 @@
+# DATASOURCE workflow_tags
+# ENGINE "MergeTree"
+# ENGINE_PARTITION_KEY "toYYYYMM(created_at)"
+# ENGINE_SORTING_KEY "id, workflow_id, tag"
+
+# SCHEMA >
+#     `id` String,
+#     `workflow_id` String,
+#     `tag` String,
+#     `created_at` DateTime
+
+DATASOURCE workflow_tags
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(created_at)"
+ENGINE_SORTING_KEY "id, workflow_id, tag"
+
+SCHEMA >
+    `id` String `json:$.id`,
+    `workflow_id` String `json:$.workflow_id`,
+    `tag` String `json:$.tag`,
+    `created_at` DateTime `json:$.created_at`

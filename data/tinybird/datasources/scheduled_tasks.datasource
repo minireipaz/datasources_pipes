@@ -1,0 +1,27 @@
+# DATASOURCE scheduled_tasks
+# ENGINE "MergeTree"
+# ENGINE_SORTING_KEY "id, workflow_id, next_run_at"
+
+# SCHEMA >
+#     `id` String,
+#     `workflow_id` String,
+#     `schedule_type` Enum8('once' = 1, 'recurring' = 2) DEFAULT 'once',
+#     `cron_expression` String,
+#     `next_run_at` DateTime,
+#     `last_run_at` Nullable(DateTime),
+#     `created_at` DateTime,
+#     `updated_at` DateTime
+
+DATASOURCE scheduled_tasks
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "id, workflow_id, next_run_at"
+
+SCHEMA >
+    `id` String `json:$.id`,
+    `workflow_id` String `json:$.workflow_id`,
+    `schedule_type` UInt8 `json:$.schedule_type`,
+    `cron_expression` String `json:$.cron_expression`,
+    `next_run_at` DateTime `json:$.next_run_at`,
+    `last_run_at` Nullable(DateTime) `json:$.last_run_at`,
+    `created_at` DateTime `json:$.created_at`,
+    `updated_at` DateTime `json:$.updated_at`

@@ -1,0 +1,34 @@
+DATASOURCE workflows
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(created_at)"
+ENGINE_SORTING_KEY "id, user_id"
+
+INCLUDE "../includes/kafka_connection.incl"
+
+KAFKA_TOPIC workflows.command
+KAFKA_GROUP_ID workflows.command_1724774872048
+
+SCHEMA >
+    `id` String `json:$.workflow.id`,
+    `user_id` String `json:$.workflow.user_id`,
+    `name` String `json:$.workflow.name`,
+    `description` Nullable(String) `json:$.workflow.description`,
+    `is_active` UInt8 `json:$.workflow.is_active`,
+    `created_at` DateTime `json:$.workflow.created_at`,
+    `updated_at` DateTime `json:$.workflow.updated_at`,
+    `workflow_init` Nullable(DateTime) `json:$.workflow.workflow_init`,
+    `workflow_completed` Nullable(DateTime) `json:$.workflow.workflow_completed`,
+    `status` UInt8 `json:$.workflow.status`
+
+
+# SCHEMA >
+#     `id` String `json:$.id`,
+#     `user_id` String `json:$.user_id`,
+#     `name` String `json:$.name`,
+#     `description` String `json:$.description`,
+#     `is_active` UInt8 `json:$.is_active`,
+#     `created_at` DateTime `json:$.created_at`,
+#     `updated_at` DateTime `json:$.updated_at`,
+#     `workflow_init` DateTime `json:$.workflow_init`,
+#     `workflow_completed` DateTime `json:$.workflow_completed`,
+#     `status` UInt8 `json:$.status`

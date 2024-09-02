@@ -1,0 +1,32 @@
+# DATASOURCE executions
+# ENGINE "MergeTree"
+# ENGINE_PARTITION_KEY "toYYYYMMDD(start_time)"
+# ENGINE_SORTING_KEY "id, workflow_id, start_time"
+
+# SCHEMA >
+#     `id` String,
+#     `workflow_id` String,
+#     `workflow_name` String,
+#     `trigger_id` String,
+#     `status` UInt8 DEFAULT 2, -- Enum8('pending' = 1, 'processing' = 2, 'completed' = 3, 'failed' = 4) DEFAULT 'processing',
+#     `start_time` DateTime,
+#     `end_time` Nullable(DateTime),
+#     `duration` UInt32 MATERIALIZED if(end_time > start_time, dateDiff('second', start_time, end_time), NULL),
+#     `error_message` Nullable(String)
+
+DATASOURCE executions
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYYYYMMDD(start_time)"
+ENGINE_SORTING_KEY "id, workflow_id, start_time"
+
+SCHEMA >
+    `id` String `json:$.id`,
+    `workflow_id` String `json:$.workflow_id`,
+    `workflow_name` String `json:$.workflow_name`,
+    `trigger_id` String `json:$.trigger_id`,
+    `status` UInt8 `json:$.status`,
+    `start_time` DateTime `json:$.start_time`,
+    `end_time` Nullable(DateTime) `json:$.end_time`,
+    `duration` UInt32 `json:$.duration`,
+    `error_message` Nullable(String) `json:$.error_message`
+

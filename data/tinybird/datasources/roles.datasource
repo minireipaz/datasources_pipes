@@ -1,0 +1,17 @@
+# DATASOURCE roles
+# ENGINE "MergeTree"
+# ENGINE_SORTING_KEY "id"
+
+# SCHEMA >
+#     `id` String,
+#     `name` String,
+#     `created_at` DateTime
+
+DATASOURCE roles
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "id"
+
+SCHEMA >
+    `id` String `json:$.id`,
+    `name` String `json:$.name`,
+    `created_at` DateTime `json:$.created_at`

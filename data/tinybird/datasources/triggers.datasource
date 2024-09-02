@@ -1,0 +1,26 @@
+# DATASOURCE triggers
+# ENGINE "MergeTree"
+# ENGINE_SORTING_KEY "id, workflow_id"
+
+# SCHEMA >
+#     `id` String,
+#     `workflow_id` String,
+#     `app_integration_id` String,
+#     `trigger_type` String,
+#     `trigger_config` String,
+#     `created_at` DateTime,
+#     `updated_at` DateTime
+
+DATASOURCE triggers
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "id, workflow_id"
+
+SCHEMA >
+    `id` String `json:$.id`,
+    `workflow_id` String `json:$.workflow_id`,
+    `app_integration_id` String `json:$.app_integration_id`,
+    `trigger_type` String `json:$.trigger_type`,
+    `trigger_config` String `json:$.trigger_config`,
+    `created_at` DateTime `json:$.created_at`,
+    `updated_at` DateTime `json:$.updated_at`
+

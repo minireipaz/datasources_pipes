@@ -1,0 +1,27 @@
+# DATASOURCE workflow_templates
+# ENGINE "MergeTree"
+# ENGINE_SORTING_KEY "id, category"
+
+# SCHEMA >
+#     `id` String,
+#     `name` String,
+#     `description` String,
+#     `category` String,
+#     `template_data` String,
+#     `created_by` String,
+#     `created_at` DateTime,
+#     `updated_at` DateTime
+
+DATASOURCE workflow_templates
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "id, category"
+
+SCHEMA >
+    `id` String `json:$.id`,
+    `name` String `json:$.name`,
+    `description` String `json:$.description`,
+    `category` String `json:$.category`,
+    `template_data` String `json:$.template_data`,
+    `created_by` String `json:$.created_by`,
+    `created_at` DateTime `json:$.created_at`,
+    `updated_at` DateTime `json:$.updated_at`

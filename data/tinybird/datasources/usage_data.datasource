@@ -1,0 +1,23 @@
+# DATASOURCE usage_data
+# ENGINE "MergeTree"
+# ENGINE_PARTITION_KEY "toYYYYMMDD(timestamp)"
+# ENGINE_SORTING_KEY "id, user_id, metric_name, timestamp"
+
+# SCHEMA >
+#     `id` String,
+#     `user_id` String,
+#     `metric_name` String,
+#     `metric_value` Float64,
+#     `timestamp` DateTime
+
+DATASOURCE usage_data
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYYYYMMDD(timestamp)"
+ENGINE_SORTING_KEY "id, user_id, metric_name, timestamp"
+
+SCHEMA >
+    `id` String `json:$.id`,
+    `user_id` String `json:$.user_id`,
+    `metric_name` String `json:$.metric_name`,
+    `metric_value` Float64 `json:$.metric_value`,
+    `timestamp` DateTime `json:$.timestamp`
