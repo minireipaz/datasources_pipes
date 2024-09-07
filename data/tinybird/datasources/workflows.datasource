@@ -5,8 +5,8 @@ ENGINE_SORTING_KEY "id, user_id"
 
 INCLUDE "../includes/kafka_connection.incl"
 
-KAFKA_TOPIC workflows.command
-KAFKA_GROUP_ID workflows.command_1724774872048
+KAFKA_TOPIC ${KAFKA_TOPIC_WORKFLOW}
+KAFKA_GROUP_ID ${KAFKA_GROUP_ID_WORKFLOW}
 
 SCHEMA >
     `id` String `json:$.workflow.id`,
