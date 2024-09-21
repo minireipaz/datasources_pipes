@@ -18,7 +18,8 @@ SCHEMA >
     `updated_at` DateTime `json:$.workflow.updated_at`,
     `workflow_init` Nullable(DateTime) `json:$.workflow.workflow_init`,
     `workflow_completed` Nullable(DateTime) `json:$.workflow.workflow_completed`,
-    `status` UInt8 `json:$.workflow.status`
+    `status` UInt8 `json:$.workflow.status`,
+    `directory_to_save` String `json:$.workflow.directory_to_save`
 
 
 # SCHEMA >

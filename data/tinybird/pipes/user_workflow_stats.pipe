@@ -14,7 +14,8 @@ SQL >
         w.is_active AS workflow_active,
         e.status AS execution_status,
         e.start_time,
-        if(e.end_time > e.start_time, dateDiff('second', e.start_time, e.end_time), NULL) AS duration
+        if(e.end_time > e.start_time, dateDiff('second', e.start_time, e.end_time), NULL) AS duration,
+        w.directory_to_save
     FROM workflows w
     LEFT JOIN executions e ON w.id = e.workflow_id
     WHERE w.user_id = {{user_id}}
@@ -49,7 +50,8 @@ SQL >
         w.status AS workflow_status,
         w.is_active AS workflow_active,
         e.start_time,
-        if(e.end_time > e.start_time, dateDiff('second', e.start_time, e.end_time), NULL) AS duration
+        if(e.end_time > e.start_time, dateDiff('second', e.start_time, e.end_time), NULL) AS duration,
+        w.directory_to_save
     FROM workflows w
     LEFT JOIN executions e ON w.id = e.workflow_id
     WHERE w.user_id = {{user_id}}
@@ -76,7 +78,8 @@ SQL >
             toString(rw.workflow_status),
             toString(rw.workflow_active),
             toString(rw.start_time),
-            if(rw.duration IS NULL, '', toString(rw.duration))
+            if(rw.duration IS NULL, '', toString(rw.duration)),
+            rw.directory_to_save
         ]) AS recent_workflows
     FROM workflow_counts wc
     CROSS JOIN (
