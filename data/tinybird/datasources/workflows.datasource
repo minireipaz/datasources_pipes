@@ -1,5 +1,5 @@
 DATASOURCE workflows
-ENGINE "MergeTree"
+ENGINE "ReplacingMergeTree"
 ENGINE_PARTITION_KEY "toYYYYMM(created_at)"
 ENGINE_SORTING_KEY "id, user_id"
 
@@ -18,18 +18,11 @@ SCHEMA >
     `updated_at` DateTime `json:$.workflow.updated_at`,
     `workflow_init` Nullable(DateTime) `json:$.workflow.workflow_init`,
     `workflow_completed` Nullable(DateTime) `json:$.workflow.workflow_completed`,
+    `duration` Nullable(UInt64) `json:$.workflow.duration`,
     `status` UInt8 `json:$.workflow.status`,
-    `directory_to_save` String `json:$.workflow.directory_to_save`
-
-
-# SCHEMA >
-#     `id` String `json:$.id`,
-#     `user_id` String `json:$.user_id`,
-#     `name` String `json:$.name`,
-#     `description` String `json:$.description`,
-#     `is_active` UInt8 `json:$.is_active`,
-#     `created_at` DateTime `json:$.created_at`,
-#     `updated_at` DateTime `json:$.updated_at`,
-#     `workflow_init` DateTime `json:$.workflow_init`,
-#     `workflow_completed` DateTime `json:$.workflow_completed`,
-#     `status` UInt8 `json:$.status`
+    `directory_to_save` String `json:$.workflow.directory_to_save`,
+    `nodes` Nullable(String) `json:$.workflow.nodes`,
+    `edges` Nullable(String) `json:$.workflow.edges`,
+    `viewport` Nullable(String) `json:$.workflow.viewport`,
+    `version` UInt32 `json:$.workflow.version` DEFAULT 0,
+    `type` String `json:$.workflow.type` DEFAULT 'create'
