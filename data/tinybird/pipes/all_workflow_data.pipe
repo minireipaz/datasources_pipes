@@ -3,7 +3,6 @@ NODE endpoint
 DESCRIPTION >
     This node selects workflows for a specific user and by workflow id
 PARAMETERS >
-    workflow_id String
     user_id String
     limit_count String
 SQL >
@@ -28,5 +27,5 @@ SELECT
     if(e.end_time > e.start_time, dateDiff('second', e.start_time, e.end_time), NULL) AS duration
 FROM workflows w FINAL
 LEFT JOIN executions e ON w.id = e.workflow_id
-WHERE  w.id = {{String(workflow_id, "")}} AND w.user_id = {{String(user_id, "")}}
+WHERE w.user_id = {{String(user_id, "")}}
 LIMIT {{UInt32(limit_count, 1)}}
