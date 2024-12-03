@@ -13,7 +13,7 @@ SCHEMA >
     `user_id` String `json:$.workflow.user_id`,
     `name` String `json:$.workflow.name`,
     `description` Nullable(String) `json:$.workflow.description`,
-    `is_active` UInt8 `json:$.workflow.is_active`,
+    `is_active` Bool `json:$.workflow.is_active` DEFAULT true,
     `created_at` DateTime `json:$.workflow.created_at`,
     `updated_at` DateTime `json:$.workflow.updated_at`,
     `workflow_init` Nullable(DateTime) `json:$.workflow.workflow_init`,
@@ -25,4 +25,5 @@ SCHEMA >
     `edges` Nullable(String) `json:$.workflow.edges`,
     `viewport` Nullable(String) `json:$.workflow.viewport`,
     `version` UInt32 `json:$.workflow.version` DEFAULT 0,
-    `type` String `json:$.workflow.type` DEFAULT 'create'
+    `typecommand` String `json:$.workflow.typecommand` DEFAULT 'create'
+

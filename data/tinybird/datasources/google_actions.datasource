@@ -1,0 +1,29 @@
+DATASOURCE google_actions
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(created_at)"
+ENGINE_SORTING_KEY "workflowid, nodeid"
+
+INCLUDE "../includes/kafka_connection.incl"
+
+KAFKA_TOPIC ${KAFKA_TOPIC_GOOGLE_ACTIONS}
+KAFKA_GROUP_ID ${KAFKA_GROUP_ID_GOOGLE_ACTIONS}
+
+SCHEMA >
+    `actionid` String `json:$.actions.actionid`,
+    `requestid` String `json:$.actions.requestid`,
+    `pollmode` LowCardinality(String) `json:$.actions.pollmode`,
+    `selectdocument` String `json:$.actions.selectdocument`,
+    `document` String `json:$.actions.document`,
+    `namedocument` String `json:$.actions.namedocument`,
+    `resourceid` String `json:$.actions.resourceid`,
+    `operation` LowCardinality(String) `json:$.actions.operation`,
+    `data` String `json:$.actions.data`,
+    `credentialid` String `json:$.actions.credentialid`,
+    `sub` String `json:$.actions.sub`,
+    `type` String `json:$.actions.type`,
+    `workflowid` String `json:$.actions.workflowid`,
+    `nodeid` String `json:$.actions.nodeid`,
+    `redirecturl` String `json:$.actions.redirecturl`,
+    `status` LowCardinality(String) `json:$.status` DEFAULT 'actions.pending',
+    `error_message` Nullable(String) `json:$.actions.error_message`,
+    `created_at` DateTime `json:$.actions.createdat`
