@@ -1,31 +1,12 @@
-# DATASOURCE users
-# ENGINE "MergeTree"
-# ENGINE_PARTITION_KEY "toYYYYMM(created_at)"
-# ENGINE_SORTING_KEY "stub"
-
-# SCHEMA >
-#     `id` UUID DEFAULT generateUUIDv4(),
-#     `stub` String,
-#     `status` UInt8 DEFAULT 1, -- Enum8('active' = 1, 'invited' = 2, 'pending' = 3, 'blocked' = 4),
-#     `resetPasswordToken` Nullable(String),
-#     `resetPasswordTokenSentAt` Nullable(DateTime),
-#     `invitationToken` Nullable(String),
-#     `invitationTokenSentAt` Nullable(DateTime),
-#     `trialExpiryDate` Date,
-#     `roleId` LowCardinality(String) DEFAULT 2,
-#     `deleted_at` Nullable(DateTime),
-#     `created_at` DateTime DEFAULT now(),
-#     `updated_at` DateTime DEFAULT now()
-
 DATASOURCE users
 ENGINE "MergeTree"
-ENGINE_PARTITION_KEY "toYYYYMM(created_at)"
+ENGINE_PARTITION_KEY "toYYYYMMDD(created_at)"
 ENGINE_SORTING_KEY "stub"
 
 SCHEMA >
     `id` UUID `json:$.id`,
     `stub` String `json:$.stub`,
-    `status` UInt8 `json:$.status`,
+    `status` UInt8 `json:$.status`, -- Enum8('active' = 1, 'invited' = 2, 'pending' = 3, 'blocked' = 4),
     `reset_password_token` Nullable(String) `json:$.reset_password_token`,
     `reset_password_token_sent_at` Nullable(DateTime) `json:$.reset_password_token_sent_at`,
     `invitation_token` Nullable(String) `json:$.invitation_token`,

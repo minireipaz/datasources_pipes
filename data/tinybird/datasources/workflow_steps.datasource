@@ -1,31 +1,14 @@
-# DATASOURCE workflow_steps
-# ENGINE "MergeTree"
-# ENGINE_PARTITION_KEY "toYYYYMM(created_at)"
-# ENGINE_SORTING_KEY "workflow_id, step_order"
-# SCHEMA >
-#     `id` String,
-#     `workflow_id` String,
-#     `step_order` UInt32,
-#     `key` Nullable(String),
-#     `appKey` Nullable(String),
-#     `type` UInt8 DEFAULT 1, -- 'action' = 1, 'trigger' = 2
-#     `connectionId` Nullable(String),
-#     `status` UInt8 DEFAULT 1, -- Enum8('incomplete' = 1, 'completed' = 2) DEFAULT 'incomplete',
-#     `parameters` String,
-#     `webhookPath` Nullable(String),
-#     `delete_at` Nullable(DateTime64(3)),
-#     `created_at` DateTime64(3) DEFAULT now64(),
-#     `updated_at` DateTime64(3) DEFAULT now64()
-
 DATASOURCE workflow_steps
 ENGINE "MergeTree"
-ENGINE_PARTITION_KEY "toYYYYMM(created_at)"
+ENGINE_PARTITION_KEY "toYYYYMMDD(created_at)"
 ENGINE_SORTING_KEY "workflow_id, step_order"
+
 SCHEMA >
     `id` String `json:$.id`,
     `workflow_id` String `json:$.workflow_id`,
     `step_order` UInt32 `json:$.step_order`,
     `key` Nullable(String) `json:$.key`,
+    `platform`  LowCardinality(String)  `json:$.platform`,
     `appKey` Nullable(String) `json:$.appKey`,
     `type` UInt8 `json:$.type`,
     `connectionId` Nullable(String) `json:$.connectionId`,

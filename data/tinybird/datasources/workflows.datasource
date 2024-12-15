@@ -1,6 +1,6 @@
 DATASOURCE workflows
 ENGINE "ReplacingMergeTree"
-ENGINE_PARTITION_KEY "toYYYYMM(created_at)"
+ENGINE_PARTITION_KEY "toYYYYMMDD(created_at)"
 ENGINE_SORTING_KEY "id, user_id"
 
 INCLUDE "../includes/kafka_connection.incl"
@@ -13,7 +13,7 @@ SCHEMA >
     `user_id` String `json:$.workflow.user_id`,
     `name` String `json:$.workflow.name`,
     `description` Nullable(String) `json:$.workflow.description`,
-    `is_active` Bool `json:$.workflow.is_active` DEFAULT true,
+    `is_active` UInt8 `json:$.workflow.is_active` DEFAULT 1, -- Enum8('active' = 1, 'draft' = 2, 'paused' = 3) DEFAULT 'active'
     `created_at` DateTime `json:$.workflow.created_at`,
     `updated_at` DateTime `json:$.workflow.updated_at`,
     `workflow_init` Nullable(DateTime) `json:$.workflow.workflow_init`,
