@@ -1,0 +1,112 @@
+{
+    "type": "record",
+    "namespace": "com.minireipaz",
+    "name": "workflow_actions",
+    "doc": "Schema for the actions data source.",
+    "fields": [
+        {
+            "name": "actionid",
+            "type": "string",
+            "doc": "The action ID."
+        },
+        {
+            "name": "requestid",
+            "type": "string",
+            "doc": "The request ID."
+        },
+        {
+            "name": "workflowid",
+            "type": "string",
+            "doc": "The workflow ID."
+        },
+        {
+            "name": "nodeid",
+            "type": "string",
+            "doc": "The node ID."
+        },
+        {
+            "name": "workflow_step_id",
+            "type": "string",
+            "doc": "The workflow step ID."
+        },
+        {
+            "name": "platform",
+            "type": "string",
+            "doc": "The platform."
+        },
+        {
+            "name": "redirecturl",
+            "type": "string",
+            "doc": "The redirect URL."
+        },
+        {
+            "name": "pollmode",
+            "type": "string",
+            "doc": "The poll mode."
+        },
+        {
+            "name": "selectdocument",
+            "type": "string",
+            "doc": "The selected document."
+        },
+        {
+            "name": "document",
+            "type": "string",
+            "doc": "The document."
+        },
+        {
+            "name": "namedocument",
+            "type": "string",
+            "doc": "The name of the document."
+        },
+        {
+            "name": "resourceid",
+            "type": "string",
+            "doc": "The resource ID."
+        },
+        {
+            "name": "operation",
+            "type": "string",
+            "doc": "The operation."
+        },
+        {
+            "name": "data",
+            "type": "string",
+            "doc": "The data."
+        },
+        {
+            "name": "credentialid",
+            "type": "string",
+            "doc": "The credential ID."
+        },
+        {
+            "name": "sub",
+            "type": "string",
+            "doc": "The subscriber ID."
+        },
+        {
+            "name": "type",
+            "type": "string",
+            "doc": "The type of action."
+        },
+        {
+            "name": "status",
+            "type": "string",
+            "default": "actions.pending",
+            "doc": "The status of the action."
+        },
+        {
+            "name": "error_message",
+            "type": [
+                "null",
+                "string"
+            ],
+            "doc": "The error message, if any."
+        },
+        {
+            "name": "created_at",
+            "type": "string",
+            "doc": "The creation timestamp."
+        }
+    ]
+}
