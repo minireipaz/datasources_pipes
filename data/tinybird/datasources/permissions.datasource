@@ -18,4 +18,4 @@ SCHEMA >
     `role_id` String `json:$.role_id`,
     `subject` String `json:$.subject`,
     `action` String `json:$.action`,
-    `conditions` Nullable(String) `json:$.conditions`
+    `conditions` String `json:$.conditions`

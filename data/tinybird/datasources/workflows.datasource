@@ -12,18 +12,18 @@ SCHEMA >
     `id` String `json:$.workflow.id`,
     `user_id` String `json:$.workflow.user_id`,
     `name` String `json:$.workflow.name`,
-    `description` Nullable(String) `json:$.workflow.description`,
-    `is_active` UInt8 `json:$.workflow.is_active` DEFAULT 1, -- Enum8('active' = 1, 'draft' = 2, 'paused' = 3) DEFAULT 'active'
+    `description` String `json:$.workflow.description`,
+    `is_active` LowCardinality(UInt8) `json:$.workflow.is_active` DEFAULT 1, -- Enum8('active' = 1, 'draft' = 2, 'paused' = 3) DEFAULT 'active'
     `created_at` DateTime `json:$.workflow.created_at`,
     `updated_at` DateTime `json:$.workflow.updated_at`,
-    `workflow_init` Nullable(DateTime) `json:$.workflow.workflow_init`,
-    `workflow_completed` Nullable(DateTime) `json:$.workflow.workflow_completed`,
-    `duration` Nullable(UInt64) `json:$.workflow.duration`,
-    `status` UInt8 `json:$.workflow.status`,
+    `workflow_init` DateTime `json:$.workflow.workflow_init`,
+    `workflow_completed` DateTime `json:$.workflow.workflow_completed`,
+    `duration` UInt64 `json:$.workflow.duration` DEFAULT 0,
+    `status` LowCardinality(UInt8) `json:$.workflow.status`,
     `directory_to_save` String `json:$.workflow.directory_to_save`,
-    `nodes` Nullable(String) `json:$.workflow.nodes`,
-    `edges` Nullable(String) `json:$.workflow.edges`,
-    `viewport` Nullable(String) `json:$.workflow.viewport`,
-    `version` UInt32 `json:$.workflow.version` DEFAULT 0,
-    `typecommand` String `json:$.workflow.typecommand` DEFAULT 'create'
+    `nodes` String `json:$.workflow.nodes`,
+    `edges` String `json:$.workflow.edges`,
+    `viewport` String `json:$.workflow.viewport`,
+    `version` LowCardinality(UInt32) `json:$.workflow.version` DEFAULT 0,
+    `typecommand` LowCardinality(String) `json:$.workflow.typecommand` DEFAULT 'create'
 

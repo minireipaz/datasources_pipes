@@ -23,9 +23,9 @@ SCHEMA >
     `id` String `json:$.id`,
     `execution_id` String `json:$.execution_id`,
     `workflow_step_id` String `json:$.workflow_step_id`,
-    `status` UInt8 `json:$.status` DEFAULT 2, -- Enum8 is invalid from tinybird 
+    `status` LowCardinality(UInt8) `json:$.status` DEFAULT 2, -- Enum8 is invalid from tinybird 
     `input_data` String `json:$.input_data`,
     `output_data` String `json:$.output_data`,
-    `error_details` Nullable(String) `json:$.error_details`,
+    `error_details` String `json:$.error_details`,
     `start_time` DateTime `json:$.start_time`,
-    `end_time` Nullable(DateTime) `json:$.end_time`
+    `end_time` DateTime `json:$.end_time`

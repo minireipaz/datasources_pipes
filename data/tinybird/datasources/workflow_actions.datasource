@@ -25,7 +25,7 @@ SCHEMA >
     `data` String `json:$.actions.data`,
     `credentialid` String `json:$.actions.credentialid`,
     `sub` String `json:$.actions.sub`,
-    `type` String `json:$.actions.type`,
+    `type` LowCardinality(String) `json:$.actions.type`,
     `status` LowCardinality(String) `json:$.status` DEFAULT 'actions.pending',
-    `error_message` Nullable(String) `json:$.actions.error_message`,
+    `error_message` String `json:$.actions.error_message`,
     `created_at` DateTime `json:$.actions.createdat`

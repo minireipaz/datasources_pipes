@@ -26,7 +26,7 @@ SCHEMA >
     `trigger_id` String `json:$.trigger_id`,
     `status` UInt8 `json:$.status`,
     `start_time` DateTime `json:$.start_time`,
-    `end_time` Nullable(DateTime) `json:$.end_time`,
+    `end_time` DateTime `json:$.end_time`,
     `duration` UInt32 `json:$.duration`,
-    `error_message` Nullable(String) `json:$.error_message`
+    `error_message` String `json:$.error_message`
 
