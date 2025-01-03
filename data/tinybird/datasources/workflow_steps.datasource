@@ -6,13 +6,13 @@ ENGINE_SORTING_KEY "workflow_id, step_order"
 SCHEMA >
     `id` String `json:$.id`,
     `workflow_id` String `json:$.workflow_id`,
-    `step_order` LowCardinality(UInt32) `json:$.step_order`,
+    `step_order` UInt32 `json:$.step_order`,
     `key` String `json:$.key`,
     `platform`  LowCardinality(String)  `json:$.platform`,
     `appKey` String `json:$.appKey`,
-    `type` LowCardinality(UInt8) `json:$.type`,
+    `type` UInt8 `json:$.type` DEFAULT 2,
     `connectionId` String `json:$.connectionId`,
-    `status` LowCardinality(UInt8) `json:$.status`,
+    `status` UInt8 `json:$.status` DEFAULT 2,  -- Initial = 1 Pending = 2 Completed = 3 Processing = 4 Failed = 5
     `parameters` String `json:$.parameters`,
     `webhookPath` String `json:$.webhookPath`,
     `delete_at` DateTime64(3) `json:$.delete_at`,

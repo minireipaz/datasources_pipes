@@ -27,6 +27,6 @@ SCHEMA >
     `status` UInt8 `json:$.status`,
     `start_time` DateTime `json:$.start_time`,
     `end_time` DateTime `json:$.end_time`,
-    `duration` UInt32 `json:$.duration`,
-    `error_message` String `json:$.error_message`
+    `duration` UInt32 `json:$.duration` DEFAULT 0
+--    `error_message` String `json:$.error_message`
 

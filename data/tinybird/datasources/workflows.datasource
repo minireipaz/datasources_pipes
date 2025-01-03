@@ -13,17 +13,17 @@ SCHEMA >
     `user_id` String `json:$.workflow.user_id`,
     `name` String `json:$.workflow.name`,
     `description` String `json:$.workflow.description`,
-    `is_active` LowCardinality(UInt8) `json:$.workflow.is_active` DEFAULT 1, -- Enum8('active' = 1, 'draft' = 2, 'paused' = 3) DEFAULT 'active'
+    `is_active` UInt8 `json:$.workflow.is_active` DEFAULT 1, -- Enum8('active' = 1, 'draft' = 2, 'paused' = 3) DEFAULT 'active'
     `created_at` DateTime `json:$.workflow.created_at`,
     `updated_at` DateTime `json:$.workflow.updated_at`,
     `workflow_init` DateTime `json:$.workflow.workflow_init`,
     `workflow_completed` DateTime `json:$.workflow.workflow_completed`,
     `duration` UInt64 `json:$.workflow.duration` DEFAULT 0,
-    `status` LowCardinality(UInt8) `json:$.workflow.status`,
+    `status` UInt8 `json:$.workflow.status` DEFAULT 1,  -- Initial = 1 Pending = 2 Completed = 3 Processing = 4 Failed = 5
     `directory_to_save` String `json:$.workflow.directory_to_save`,
     `nodes` String `json:$.workflow.nodes`,
     `edges` String `json:$.workflow.edges`,
     `viewport` String `json:$.workflow.viewport`,
-    `version` LowCardinality(UInt32) `json:$.workflow.version` DEFAULT 0,
-    `typecommand` LowCardinality(String) `json:$.workflow.typecommand` DEFAULT 'create'
+    `version` UInt32 `json:$.workflow.version` DEFAULT 0,
+    `typecommand` String `json:$.workflow.typecommand` DEFAULT 'create' -- use LowCardinality
 
