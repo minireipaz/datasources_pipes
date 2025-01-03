@@ -96,14 +96,6 @@
             "doc": "The status of the action."
         },
         {
-            "name": "error_message",
-            "type": [
-                "null",
-                "string"
-            ],
-            "doc": "The error message, if any."
-        },
-        {
             "name": "created_at",
             "type": "string",
             "doc": "The creation timestamp."
