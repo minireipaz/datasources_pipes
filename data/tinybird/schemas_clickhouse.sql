@@ -37,7 +37,7 @@ CREATE TABLE executions_stats
     max_duration_seconds Int32
 )
 ENGINE = SummingMergeTree
-PARTITION BY toYYYYMM(date)
+PARTITION BY toYYYYMMDD(date)
 ORDER BY (date, workflow_id);
 
 CREATE TABLE execution_steps
@@ -120,7 +120,7 @@ CREATE TABLE subscriptions
     updated_at DateTime
 )
 ENGINE = MergeTree
-PARTITION BY toYYYYMM(start_date)
+PARTITION BY toYYYYMMDD(start_date)
 ORDER BY (id, user_id, start_date);
 
 CREATE TABLE triggers
@@ -164,7 +164,7 @@ CREATE TABLE users
     updated_at DateTime DEFAULT now()
 )
 ENGINE = MergeTree
-PARTITION BY toYYYYMM(created_at)
+PARTITION BY toYYYYMMDD(created_at)
 ORDER BY stub;
 
 CREATE TABLE webhooks
@@ -196,7 +196,7 @@ CREATE TABLE workflows
     status UInt8 DEFAULT 1 -- Enum8('pending' = 1, 'completed' = 2, 'processing' = 3, 'failed' = 4) DEFAULT 'pending'
 )
 ENGINE = MergeTree
-PARTITION BY toYYYYMM(created_at)
+PARTITION BY toYYYYMMDD(created_at)
 ORDER BY (id, user_id);
 
 CREATE TABLE workflow_stats
@@ -209,7 +209,7 @@ CREATE TABLE workflow_stats
     avg_duration_seconds Float64
 )
 ENGINE = SummingMergeTree
-PARTITION BY toYYYYMM(date)
+PARTITION BY toYYYYMMDD(date)
 ORDER BY date;
 
 CREATE TABLE workflow_steps
@@ -229,7 +229,7 @@ CREATE TABLE workflow_steps
     updated_at DateTime64(3) DEFAULT now64()
 )
 ENGINE = MergeTree
-PARTITION BY toYYYYMM(created_at)
+PARTITION BY toYYYYMMDD(created_at)
 ORDER BY (workflow_id, step_order);
 
 CREATE TABLE workflow_tags
@@ -240,7 +240,7 @@ CREATE TABLE workflow_tags
     created_at DateTime
 )
 ENGINE = MergeTree
-PARTITION BY toYYYYMM(created_at)
+PARTITION BY toYYYYMMDD(created_at)
 ORDER BY (id, workflow_id, tag);
 
 CREATE TABLE workflow_templates
