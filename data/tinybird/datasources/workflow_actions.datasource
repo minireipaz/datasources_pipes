@@ -13,8 +13,6 @@ SCHEMA >
     `requestid` String `json:$.actions.requestid`,
     `workflowid` String `json:$.actions.workflowid`,
     `nodeid` String `json:$.actions.nodeid`,
-    `workflow_step_id` String `json:$.workflow_step_id`,
-    `platform`  LowCardinality(String)  `json:$.platform`,
     `redirecturl` String `json:$.actions.redirecturl`,
     `pollmode` LowCardinality(String) `json:$.actions.pollmode`,
     `selectdocument` String `json:$.actions.selectdocument`,
@@ -26,6 +24,10 @@ SCHEMA >
     `credentialid` String `json:$.actions.credentialid`,
     `sub` String `json:$.actions.sub`,
     `type` LowCardinality(String) `json:$.actions.type`,
-    `status` LowCardinality(String) `json:$.status` DEFAULT 'actions.pending',
-    `error_message` String `json:$.actions.error_message`,
-    `created_at` DateTime `json:$.actions.createdat`
+    `status` LowCardinality(String) `json:$.actions.status` DEFAULT 'pending',
+    `testmode` Bool `json:$.actions.testmode` DEFAULT false,
+    `created_at` DateTime `json:$.actions.createdat`,
+    `timestamp`  DateTime64(3) `json:$.timestamp`,
+    `typecommand` LowCardinality(String) `json:$.type`
+
+    -- `error_message` String `json:$.actions.error_message`,

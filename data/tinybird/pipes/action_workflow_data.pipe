@@ -1,0 +1,32 @@
+NODE endpoint
+
+DESCRIPTION >
+    This node selects action for a specific actionid and by userid
+PARAMETERS >
+    user_id String
+    action_id String
+    limit_count String
+SQL >
+%
+SELECT 
+    actionid,
+    requestid,
+    workflowid,
+    nodeid,
+    redirecturl,
+    pollmode,
+    selectdocument,
+    document,
+    namedocument,
+    resourceid,
+    operation,
+    data,
+    credentialid,
+    sub,
+    type,
+    status,
+    testmode,
+    created_at
+FROM workflow_actions
+WHERE workflow_actions.sub = {{String(user_id, "")}} AND workflow_actions.actionid = {{String(action_id, "")}}
+LIMIT {{UInt32(limit_count, 1)}}
