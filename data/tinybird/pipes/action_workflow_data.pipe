@@ -5,10 +5,12 @@ DESCRIPTION >
 PARAMETERS >
     user_id String
     action_id String
+    type_command String
     limit_count String
 SQL >
 %
 SELECT 
+    typecommand,
     actionid,
     requestid,
     workflowid,
@@ -28,5 +30,5 @@ SELECT
     testmode,
     created_at
 FROM workflow_actions FINAL
-WHERE workflow_actions.sub = {{String(user_id, "")}} AND workflow_actions.actionid = {{String(action_id, "")}}
+WHERE workflow_actions.typecommand = {{String(type_command, "update")}} AND workflow_actions.sub = {{String(user_id, "")}} AND workflow_actions.actionid = {{String(action_id, "")}}
 LIMIT {{UInt32(limit_count, 1)}}
