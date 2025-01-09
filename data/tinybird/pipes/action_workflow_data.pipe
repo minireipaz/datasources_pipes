@@ -27,6 +27,6 @@ SELECT
     status,
     testmode,
     created_at
-FROM workflow_actions
+FROM workflow_actions FINAL
 WHERE workflow_actions.sub = {{String(user_id, "")}} AND workflow_actions.actionid = {{String(action_id, "")}}
 LIMIT {{UInt32(limit_count, 1)}}
