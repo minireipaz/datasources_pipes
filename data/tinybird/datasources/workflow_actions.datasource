@@ -1,5 +1,5 @@
 DATASOURCE workflow_actions
-ENGINE "MergeTree"
+ENGINE "ReplacingMergeTree"
 ENGINE_PARTITION_KEY "toYYYYMMDD(created_at)"
 ENGINE_SORTING_KEY "workflowid, nodeid"
 
@@ -9,6 +9,8 @@ KAFKA_TOPIC ${KAFKA_TOPIC_WORKFLOW_ACTIONS}
 KAFKA_GROUP_ID ${KAFKA_GROUP_ID_WORKFLOW_ACTIONS}
 
 SCHEMA >
+    `timestamp`  DateTime64(3) `json:$.timestamp`,
+    `typecommand` LowCardinality(String) `json:$.type` DEFAULT 'create',
     `actionid` String `json:$.actions.actionid`,
     `requestid` String `json:$.actions.requestid`,
     `workflowid` String `json:$.actions.workflowid`,
@@ -26,8 +28,4 @@ SCHEMA >
     `type` LowCardinality(String) `json:$.actions.type`,
     `status` LowCardinality(String) `json:$.actions.status` DEFAULT 'pending',
     `testmode` Bool `json:$.actions.testmode` DEFAULT false,
-    `created_at` DateTime `json:$.actions.createdat`,
-    `timestamp`  DateTime64(3) `json:$.timestamp`,
-    `typecommand` LowCardinality(String) `json:$.type`
-
-    -- `error_message` String `json:$.actions.error_message`,
+    `created_at` DateTime `json:$.actions.createdat`
